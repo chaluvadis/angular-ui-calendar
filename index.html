@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="calendarApp">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,27 +8,16 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css" />
     <link rel="stylesheet" href="bower_components/angular-moment-picker/dist/angular-moment-picker.css" />
-    <!-- jquery, moment, and angular have to get included before fullcalendar -->
-    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
-    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-    <script type="text/javascript" src="bower_components/angular-ui-calendar/src/calendar.js"></script>
-    <script type="text/javascript" src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
-    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="bower_components/angular-moment-picker/dist/angular-moment-picker.js"></script>
     <style>
         a.fc-day-grid-event.fc-h-event.fc-event.fc-start.fc-end {
             cursor: pointer;
         }
-
         .moment-picker {
             z-index: 1100 !important;
         }
     </style>
 </head>
-
-<body data-ng-controller="calendarController">
+<body data-ng-controller="calendarController as ctrl">
     <div class="container">
         <div class="row" style="margin-bottom:20px;margin-top:20px;">
             <div class="col-md-2">
@@ -39,59 +27,19 @@
         </div>
         <div class="row">
             <div class="col-md-12 col-sm-12">
-                <div id="calendar" ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="myCalendar"></div>
+                <div id="calendar" ui-calendar="ctrl.uiConfig.calendar" ng-model="ctrl.eventSources" calendar="myCalendar"></div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    <h4 class="modal-title" id="myModalLabel">Add Event</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="eventSubject">Event Subject</label>
-                        <textarea name="eventSubject" data-ng-model="selectedEvent.title" class="form-control" placeholder="Event Subject" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="startDate">Start Date</label>
-                        <div class="input-group" moment-picker="selectedEvent.start" format="DD/MM/YYYY HH:mm A" start-view="month">
-                            <input data-ng-model="selectedEvent.start" 
-                                locale="en" 
-                                name="start" 
-                                class="form-control"
-                                ng-model-options="{ updateOn: 'blur' }"
-                                placeholder="Enter Start Date">
-                            <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="endDate">End Date</label>
-                        <div class="input-group">
-                            <input name="end" data-ng-model="selectedEvent.end" class="form-control" placeholder="Enter End Date">
-                            <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="eventDescription">Event Description</label>
-                        <textarea rows="3" data-ng-model="selectedEvent.description" class="form-control" placeholder="Enter event description"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-ng-click="addEvent()">Save</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div data-ng-include="addEvent.html"></div>
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-calendar/src/calendar.js"></script>
+    <script type="text/javascript" src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-moment-picker/dist/angular-moment-picker.js"></script>
     <script type="text/javascript" src="./app.js"></script>
 </body>
 
